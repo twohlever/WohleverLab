@@ -1,0 +1,55 @@
+data <- read.csv("~/Downloads/FLOWJO/2021_07_07_KO_ATP5G1_gated_KO5.csv")
+gfp2mCherryRatio_KO_ATP5G1_gated_KO5 <- data[[1]]/data[[2]]
+
+data <- read.csv("~/Downloads/FLOWJO/2021_07_07_KO_ATP5G1_ungated_KO5.csv")
+gfp2mCherryRatio_KO_ATP5G1_ungated_KO5 <- data[[1]]/data[[2]]
+
+data <- read.csv("~/Downloads/FLOWJO/2021_07_07_WT_ATP5G1__ungated_WT2.csv")
+gfp2mCherryRatio_WT_ATP5G1__ungated_WT2 <- data[[1]]/data[[2]]
+
+data <- read.csv("~/Downloads/FLOWJO/2021_07_07_WT_ATP5G1_gated_WT2.csv")
+gfp2mCherryRatio_WT_ATP5G1_gated_WT2 <- data[[1]]/data[[2]]
+
+
+
+gfp2mCherryRatio_ALL <- c(gfp2mCherryRatio_KO_ATP5G1_gated_KO5, gfp2mCherryRatio_KO_ATP5G1_ungated_KO5, gfp2mCherryRatio_WT_ATP5G1__ungated_WT2, gfp2mCherryRatio_WT_ATP5G1_gated_WT2)
+
+
+gfp2mCherryHist_ALL <- hist(gfp2mCherryRatio_ALL, breaks=200)
+breaks <- gfp2mCherryHist_ALL$breaks
+write.table(breaks, file="~/Downloads/FLOWJO/histogram/breaks.csv", row.names = FALSE, sep = ",")
+
+
+
+h <- hist(gfp2mCherryRatio_KO_ATP5G1_gated_KO5, breaks = breaks)
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="~/Downloads//FLOWJO/histogram/KO_ATP5G1_gated_KO5_hist.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+h <- hist(gfp2mCherryRatio_KO_ATP5G1_ungated_KO5, breaks = breaks)
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="~/Downloads//FLOWJO/histogram/KO_ATP5G1_ungated_KO5_hist.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+h <- hist(gfp2mCherryRatio_WT_ATP5G1__ungated_WT2, breaks = breaks)
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="~/Downloads//FLOWJO/histogram/WT_ATP5G1__ungated_WT2.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+
+h <- hist(gfp2mCherryRatio_WT_ATP5G1_gated_WT2, breaks = breaks)
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="~/Downloads//FLOWJO/histogram/WT_ATP5G1_gated_WT2.csv",
+	row.names = FALSE,
+	sep = ","
+)

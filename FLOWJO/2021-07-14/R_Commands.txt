@@ -1,0 +1,141 @@
+setwd("/Users/theresawohlever/git_repos/WohleverLab/FLOWJO/2021-07-14/")
+data <- read.csv('2021_07_14_KO_ATP5G1_gated.csv')
+gfp2mCherryRatio_2021_07_14_KO_ATP5G1_gated <- data[[1]]/data[[2]]
+
+data <- read.csv('2021_07_14_KO_ATP5G1_ungated.csv')
+gfp2mCherryRatio_2021_07_14_KO_ATP5G1_ungated <- data[[1]]/data[[2]]
+
+data <- read.csv('2021_07_14_KO_Omp25_gated.csv')
+gfp2mCherryRatio_2021_07_14_KO_Omp25_gated <- data[[1]]/data[[2]]
+
+data <- read.csv('2021_07_14_KO_Omp25_ungated.csv')
+gfp2mCherryRatio_2021_07_14_KO_Omp25_ungated <- data[[1]]/data[[2]]
+
+data <- read.csv('2021_07_14_WT_ATP5G1_gated.csv')
+gfp2mCherryRatio_2021_07_14_WT_ATP5G1_gated <- data[[1]]/data[[2]]
+
+data <- read.csv('2021_07_14_WT_ATP5G1_ungated.csv')
+gfp2mCherryRatio_2021_07_14_WT_ATP5G1_ungated <- data[[1]]/data[[2]]
+
+data <- read.csv('2021_07_14_WT_Omp25_gated.csv')
+gfp2mCherryRatio_2021_07_14_WT_Omp25_gated <- data[[1]]/data[[2]]
+
+data <- read.csv('2021_07_14_WT_Omp25_ungated.csv')
+gfp2mCherryRatio_2021_07_14_WT_Omp25_ungated <- data[[1]]/data[[2]]
+
+gfp2mCherryRatio_ALL <- c(1
+, gfp2mCherryRatio_2021_07_14_WT_Omp25_ungated
+, gfp2mCherryRatio_2021_07_14_WT_Omp25_gated
+, gfp2mCherryRatio_2021_07_14_WT_ATP5G1_ungated
+, gfp2mCherryRatio_2021_07_14_WT_ATP5G1_gated
+, gfp2mCherryRatio_2021_07_14_KO_Omp25_ungated
+, gfp2mCherryRatio_2021_07_14_KO_Omp25_gated
+, gfp2mCherryRatio_2021_07_14_KO_ATP5G1_ungated
+, gfp2mCherryRatio_2021_07_14_KO_ATP5G1_gated
+)
+gfp2mCherryHist_ALL <- hist(gfp2mCherryRatio_ALL, breaks=200)
+breaks <- gfp2mCherryHist_ALL$breaks
+write.table(
+  breaks,
+  file="histogram/breaks.csv",
+  row.names = FALSE,
+  sep = ,
+)
+
+
+
+h <- hist(gfp2mCherryRatio_2021_07_14_WT_Omp25_ungated, breaks = breaks)
+dev.copy(png,'histogram/2021_07_14_WT_Omp25_ungated_histogram.png')
+dev.off()
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="histogram/2021_07_14_WT_Omp25_ungated_histogram.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+
+
+h <- hist(gfp2mCherryRatio_2021_07_14_WT_Omp25_gated, breaks = breaks)
+dev.copy(png,'histogram/2021_07_14_WT_Omp25_gated_histogram.png')
+dev.off()
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="histogram/2021_07_14_WT_Omp25_gated_histogram.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+
+
+h <- hist(gfp2mCherryRatio_2021_07_14_WT_ATP5G1_ungated, breaks = breaks)
+dev.copy(png,'histogram/2021_07_14_WT_ATP5G1_ungated_histogram.png')
+dev.off()
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="histogram/2021_07_14_WT_ATP5G1_ungated_histogram.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+
+
+h <- hist(gfp2mCherryRatio_2021_07_14_WT_ATP5G1_gated, breaks = breaks)
+dev.copy(png,'histogram/2021_07_14_WT_ATP5G1_gated_histogram.png')
+dev.off()
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="histogram/2021_07_14_WT_ATP5G1_gated_histogram.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+
+
+h <- hist(gfp2mCherryRatio_2021_07_14_KO_Omp25_ungated, breaks = breaks)
+dev.copy(png,'histogram/2021_07_14_KO_Omp25_ungated_histogram.png')
+dev.off()
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="histogram/2021_07_14_KO_Omp25_ungated_histogram.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+
+
+h <- hist(gfp2mCherryRatio_2021_07_14_KO_Omp25_gated, breaks = breaks)
+dev.copy(png,'histogram/2021_07_14_KO_Omp25_gated_histogram.png')
+dev.off()
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="histogram/2021_07_14_KO_Omp25_gated_histogram.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+
+
+h <- hist(gfp2mCherryRatio_2021_07_14_KO_ATP5G1_ungated, breaks = breaks)
+dev.copy(png,'histogram/2021_07_14_KO_ATP5G1_ungated_histogram.png')
+dev.off()
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="histogram/2021_07_14_KO_ATP5G1_ungated_histogram.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+
+
+h <- hist(gfp2mCherryRatio_2021_07_14_KO_ATP5G1_gated, breaks = breaks)
+dev.copy(png,'histogram/2021_07_14_KO_ATP5G1_gated_histogram.png')
+dev.off()
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="histogram/2021_07_14_KO_ATP5G1_gated_histogram.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+
