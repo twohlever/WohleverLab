@@ -1,0 +1,29 @@
+setwd("/Users/theresawohlever/git_repos/WohleverLab/FLOWJO/2022-02-25/")
+data <- read.csv('1A_gate1.csv')
+gfp2mCherryRatio_1A_gate1 <- data[[1]]/data[[2]]
+
+gfp2mCherryRatio_ALL <- c(1
+, gfp2mCherryRatio_1A_gate1
+)
+gfp2mCherryHist_ALL <- hist(gfp2mCherryRatio_ALL, breaks=200)
+breaks <- gfp2mCherryHist_ALL$breaks
+write.table(
+  breaks,
+  file="histogram/breaks.csv",
+  row.names = FALSE,
+  sep = ,
+)
+
+
+
+h <- hist(gfp2mCherryRatio_1A_gate1, breaks = breaks)
+dev.copy(png,'histogram/1A_gate1_histogram.png')
+dev.off()
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="histogram/1A_gate1_histogram.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+

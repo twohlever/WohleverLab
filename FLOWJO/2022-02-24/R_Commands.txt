@@ -1,0 +1,45 @@
+setwd("/Users/theresawohlever/git_repos/WohleverLab/FLOWJO/2022-02-24/")
+data <- read.csv('export_Specimen_001_2F_001_gate.csv')
+gfp2mCherryRatio_export_Specimen_001_2F_001_gate <- data[[1]]/data[[2]]
+
+data <- read.csv('export_Specimen_001_p506t_002_gate.csv')
+gfp2mCherryRatio_export_Specimen_001_p506t_002_gate <- data[[1]]/data[[2]]
+
+gfp2mCherryRatio_ALL <- c(1
+, gfp2mCherryRatio_export_Specimen_001_p506t_002_gate
+, gfp2mCherryRatio_export_Specimen_001_2F_001_gate
+)
+gfp2mCherryHist_ALL <- hist(gfp2mCherryRatio_ALL, breaks=200)
+breaks <- gfp2mCherryHist_ALL$breaks
+write.table(
+  breaks,
+  file="histogram/breaks.csv",
+  row.names = FALSE,
+  sep = ,
+)
+
+
+
+h <- hist(gfp2mCherryRatio_export_Specimen_001_p506t_002_gate, breaks = breaks)
+dev.copy(png,'histogram/export_Specimen_001_p506t_002_gate_histogram.png')
+dev.off()
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="histogram/export_Specimen_001_p506t_002_gate_histogram.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+
+
+h <- hist(gfp2mCherryRatio_export_Specimen_001_2F_001_gate, breaks = breaks)
+dev.copy(png,'histogram/export_Specimen_001_2F_001_gate_histogram.png')
+dev.off()
+write.table(
+	data.frame(counts = h$counts, density = h$density, mids = h$mids),
+	file="histogram/export_Specimen_001_2F_001_gate_histogram.csv",
+	row.names = FALSE,
+	sep = ","
+)
+
+
