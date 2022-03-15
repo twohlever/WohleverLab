@@ -2,8 +2,9 @@
 
 # Assumes script is run in directory with input csv files
 
+R='/opt/homebrew/bin/R'
 
-OUTPUT_FILE="R_Commands.txt"
+OUTPUT_FILE="R_Commands.R"
 WORKDIR=`pwd`
 NAMES_LIST=""
 
@@ -62,3 +63,7 @@ write.table(
 "  >> ${OUTPUT_FILE}
 
 done
+
+
+echo "Running R command: ${R} CMD BATCH ${OUTPUT_FILE}"
+${R} CMD BATCH ${OUTPUT_FILE}

@@ -1,0 +1,56 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin21.1.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> setwd("/Users/theresawohlever/git_repos/WohleverLab/FLOWJO/testthing/")
+> data <- read.csv('2022_02_25_TKO.csv')
+> gfp2mCherryRatio_2022_02_25_TKO <- data[[1]]/data[[2]]
+> 
+> gfp2mCherryRatio_ALL <- c(1
++ , gfp2mCherryRatio_2022_02_25_TKO
++ )
+> gfp2mCherryHist_ALL <- hist(gfp2mCherryRatio_ALL, breaks=200)
+> breaks <- gfp2mCherryHist_ALL$breaks
+> write.table(
++   breaks,
++   file="histogram/breaks.csv",
++   row.names = FALSE,
++   sep = ,
++ )
+> 
+> 
+> 
+> h <- hist(gfp2mCherryRatio_2022_02_25_TKO, breaks = breaks)
+> dev.copy(png,'histogram/2022_02_25_TKO_histogram.png')
+quartz_off_screen 
+                3 
+> dev.off()
+pdf 
+  2 
+> write.table(
++ 	data.frame(counts = h$counts, density = h$density, mids = h$mids),
++ 	file="histogram/2022_02_25_TKO_histogram.csv",
++ 	row.names = FALSE,
++ 	sep = ","
++ )
+> 
+> 
+> 
+> proc.time()
+   user  system elapsed 
+  0.104   0.033   0.286 
