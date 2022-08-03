@@ -1,0 +1,156 @@
+
+R version 4.1.3 (2022-03-10) -- "One Push-Up"
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin21.3.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> setwd("/Users/theresawohlever/git_repos/WohleverLab/FLOWJO/2022-04-29/")
+> data <- read.csv('2022_03_18_1A.csv')
+> gfp2mCherryRatio_2022_03_18_1A <- data[[1]]/data[[2]]
+> 
+> data <- read.csv('2022_03_18_1F.csv')
+> gfp2mCherryRatio_2022_03_18_1F <- data[[1]]/data[[2]]
+> 
+> data <- read.csv('2022_03_18_1L.csv')
+> gfp2mCherryRatio_2022_03_18_1L <- data[[1]]/data[[2]]
+> 
+> data <- read.csv('2022_03_18_2F.csv')
+> gfp2mCherryRatio_2022_03_18_2F <- data[[1]]/data[[2]]
+> 
+> data <- read.csv('2022_03_18_4F.csv')
+> gfp2mCherryRatio_2022_03_18_4F <- data[[1]]/data[[2]]
+> 
+> data <- read.csv('2022_03_18_P506T.csv')
+> gfp2mCherryRatio_2022_03_18_P506T <- data[[1]]/data[[2]]
+> 
+> gfp2mCherryRatio_ALL <- c(1
++ , gfp2mCherryRatio_2022_03_18_P506T
++ , gfp2mCherryRatio_2022_03_18_4F
++ , gfp2mCherryRatio_2022_03_18_2F
++ , gfp2mCherryRatio_2022_03_18_1L
++ , gfp2mCherryRatio_2022_03_18_1F
++ , gfp2mCherryRatio_2022_03_18_1A
++ )
+> gfp2mCherryHist_ALL <- hist(gfp2mCherryRatio_ALL, breaks=200)
+> breaks <- gfp2mCherryHist_ALL$breaks
+> write.table(
++   breaks,
++   file="histogram/breaks.csv",
++   row.names = FALSE,
++   sep = ,
++ )
+> 
+> 
+> 
+> h <- hist(gfp2mCherryRatio_2022_03_18_P506T, breaks = breaks)
+> dev.copy(png,'histogram/2022_03_18_P506T_histogram.png')
+quartz_off_screen 
+                3 
+> dev.off()
+pdf 
+  2 
+> write.table(
++ 	data.frame(counts = h$counts, density = h$density, mids = h$mids),
++ 	file="histogram/2022_03_18_P506T_histogram.csv",
++ 	row.names = FALSE,
++ 	sep = ","
++ )
+> 
+> 
+> 
+> h <- hist(gfp2mCherryRatio_2022_03_18_4F, breaks = breaks)
+> dev.copy(png,'histogram/2022_03_18_4F_histogram.png')
+quartz_off_screen 
+                3 
+> dev.off()
+pdf 
+  2 
+> write.table(
++ 	data.frame(counts = h$counts, density = h$density, mids = h$mids),
++ 	file="histogram/2022_03_18_4F_histogram.csv",
++ 	row.names = FALSE,
++ 	sep = ","
++ )
+> 
+> 
+> 
+> h <- hist(gfp2mCherryRatio_2022_03_18_2F, breaks = breaks)
+> dev.copy(png,'histogram/2022_03_18_2F_histogram.png')
+quartz_off_screen 
+                3 
+> dev.off()
+pdf 
+  2 
+> write.table(
++ 	data.frame(counts = h$counts, density = h$density, mids = h$mids),
++ 	file="histogram/2022_03_18_2F_histogram.csv",
++ 	row.names = FALSE,
++ 	sep = ","
++ )
+> 
+> 
+> 
+> h <- hist(gfp2mCherryRatio_2022_03_18_1L, breaks = breaks)
+> dev.copy(png,'histogram/2022_03_18_1L_histogram.png')
+quartz_off_screen 
+                3 
+> dev.off()
+pdf 
+  2 
+> write.table(
++ 	data.frame(counts = h$counts, density = h$density, mids = h$mids),
++ 	file="histogram/2022_03_18_1L_histogram.csv",
++ 	row.names = FALSE,
++ 	sep = ","
++ )
+> 
+> 
+> 
+> h <- hist(gfp2mCherryRatio_2022_03_18_1F, breaks = breaks)
+> dev.copy(png,'histogram/2022_03_18_1F_histogram.png')
+quartz_off_screen 
+                3 
+> dev.off()
+pdf 
+  2 
+> write.table(
++ 	data.frame(counts = h$counts, density = h$density, mids = h$mids),
++ 	file="histogram/2022_03_18_1F_histogram.csv",
++ 	row.names = FALSE,
++ 	sep = ","
++ )
+> 
+> 
+> 
+> h <- hist(gfp2mCherryRatio_2022_03_18_1A, breaks = breaks)
+> dev.copy(png,'histogram/2022_03_18_1A_histogram.png')
+quartz_off_screen 
+                3 
+> dev.off()
+pdf 
+  2 
+> write.table(
++ 	data.frame(counts = h$counts, density = h$density, mids = h$mids),
++ 	file="histogram/2022_03_18_1A_histogram.csv",
++ 	row.names = FALSE,
++ 	sep = ","
++ )
+> 
+> 
+> 
+> proc.time()
+   user  system elapsed 
+  0.135   0.066   0.358 
