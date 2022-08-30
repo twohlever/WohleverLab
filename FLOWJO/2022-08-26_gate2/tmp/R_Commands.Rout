@@ -1,0 +1,73 @@
+
+R version 4.1.3 (2022-03-10) -- "One Push-Up"
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin21.3.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> setwd("/Users/theresawohlever/git_repos/WohleverLab/FLOWJO/2022-08-26_gate2/")
+> data <- read.csv('2022_08_18_1F_ATP5G1_gate2.csv')
+> gfp2mCherryRatio_2022_08_18_1F_ATP5G1_gate2 <- data[[1]]/data[[2]]
+> 
+> data <- read.csv('2022_08_18_2F_ATP5G1_gate2.csv')
+> gfp2mCherryRatio_2022_08_18_2F_ATP5G1_gate2 <- data[[1]]/data[[2]]
+> 
+> data <- read.csv('2022_08_18_4F_ATP5G1_gate2.csv')
+> gfp2mCherryRatio_2022_08_18_4F_ATP5G1_gate2 <- data[[1]]/data[[2]]
+> 
+> data <- read.csv('2022_08_18_TKO_ATP5G1_gate2.csv')
+> gfp2mCherryRatio_2022_08_18_TKO_ATP5G1_gate2 <- data[[1]]/data[[2]]
+> 
+> data <- read.csv('2022_08_18_TKO_untagged_gate2.csv')
+> gfp2mCherryRatio_2022_08_18_TKO_untagged_gate2 <- data[[1]]/data[[2]]
+> 
+> data <- read.csv('2022_08_18_WT_ATP5G1_gate2.csv')
+> gfp2mCherryRatio_2022_08_18_WT_ATP5G1_gate2 <- data[[1]]/data[[2]]
+> 
+> data <- read.csv('2022_08_18_WT_untagged_gate2.csv')
+> gfp2mCherryRatio_2022_08_18_WT_untagged_gate2 <- data[[1]]/data[[2]]
+> 
+> gfp2mCherryRatio_ALL <- c(1
++ , gfp2mCherryRatio_2022_08_18_WT_untagged_gate2
++ , gfp2mCherryRatio_2022_08_18_WT_ATP5G1_gate2
++ , gfp2mCherryRatio_2022_08_18_TKO_untagged_gate2
++ , gfp2mCherryRatio_2022_08_18_TKO_ATP5G1_gate2
++ , gfp2mCherryRatio_2022_08_18_4F_ATP5G1_gate2
++ , gfp2mCherryRatio_2022_08_18_2F_ATP5G1_gate2
++ , gfp2mCherryRatio_2022_08_18_1F_ATP5G1_gate2
++ )
+> 
+> ## Clean out large values when generating the histogram breakpoints
+> gfp2mCherryRatio_ALL <- gfp2mCherryRatio_ALL[gfp2mCherryRatio_ALL < 1.2]
+> 
+> gfp2mCherryHist_ALL <- hist(gfp2mCherryRatio_ALL, breaks=200)
+> breaks <- gfp2mCherryHist_ALL$breaks
+> write.table(
++   breaks,
++   file="histogram/breaks.csv",
++   row.names = FALSE,
++   sep = ,
++ )
+> 
+> 
+> 
+> h <- hist(gfp2mCherryRatio_2022_08_18_WT_untagged_gate2, breaks = c(breaks, max(gfp2mCherryRatio_2022_08_18_WT_untagged_gate2, max(breaks)+.00001) )
++ dev.copy(png,'histogram/2022_08_18_WT_untagged_gate2_histogram.png')
+Error: unexpected symbol in:
+"h <- hist(gfp2mCherryRatio_2022_08_18_WT_untagged_gate2, breaks = c(breaks, max(gfp2mCherryRatio_2022_08_18_WT_untagged_gate2, max(breaks)+.00001) )
+dev.copy"
+Execution halted

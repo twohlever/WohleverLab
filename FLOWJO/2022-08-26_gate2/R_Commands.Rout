@@ -17,6 +17,8 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
+[Previously saved workspace restored]
+
 > setwd("/Users/theresawohlever/git_repos/WohleverLab/FLOWJO/2022-08-26_gate2/")
 > data <- read.csv('2022_08_18_1F_ATP5G1_gate2.csv')
 > gfp2mCherryRatio_2022_08_18_1F_ATP5G1_gate2 <- data[[1]]/data[[2]]
@@ -48,6 +50,10 @@ Type 'q()' to quit R.
 + , gfp2mCherryRatio_2022_08_18_2F_ATP5G1_gate2
 + , gfp2mCherryRatio_2022_08_18_1F_ATP5G1_gate2
 + )
+> 
+> ## Clean out large values when generating the histogram breakpoints
+> gfp2mCherryRatio_ALL <- gfp2mCherryRatio_ALL[gfp2mCherryRatio_ALL < 1.2]
+> 
 > gfp2mCherryHist_ALL <- hist(gfp2mCherryRatio_ALL, breaks=200)
 > breaks <- gfp2mCherryHist_ALL$breaks
 > write.table(
@@ -57,9 +63,11 @@ Type 'q()' to quit R.
 +   sep = ,
 + )
 > 
+> break_max <- max(breaks) + 0.000000000000001
 > 
 > 
-> h <- hist(gfp2mCherryRatio_2022_08_18_WT_untagged_gate2, breaks = breaks)
+> 
+> h <- hist(gfp2mCherryRatio_2022_08_18_WT_untagged_gate2, breaks = c(breaks, max(gfp2mCherryRatio_2022_08_18_WT_untagged_gate2, break_max)) )
 > dev.copy(png,'histogram/2022_08_18_WT_untagged_gate2_histogram.png')
 quartz_off_screen 
                 3 
@@ -75,7 +83,7 @@ pdf
 > 
 > 
 > 
-> h <- hist(gfp2mCherryRatio_2022_08_18_WT_ATP5G1_gate2, breaks = breaks)
+> h <- hist(gfp2mCherryRatio_2022_08_18_WT_ATP5G1_gate2, breaks = c(breaks, max(gfp2mCherryRatio_2022_08_18_WT_ATP5G1_gate2, break_max)) )
 > dev.copy(png,'histogram/2022_08_18_WT_ATP5G1_gate2_histogram.png')
 quartz_off_screen 
                 3 
@@ -91,7 +99,7 @@ pdf
 > 
 > 
 > 
-> h <- hist(gfp2mCherryRatio_2022_08_18_TKO_untagged_gate2, breaks = breaks)
+> h <- hist(gfp2mCherryRatio_2022_08_18_TKO_untagged_gate2, breaks = c(breaks, max(gfp2mCherryRatio_2022_08_18_TKO_untagged_gate2, break_max)) )
 > dev.copy(png,'histogram/2022_08_18_TKO_untagged_gate2_histogram.png')
 quartz_off_screen 
                 3 
@@ -107,7 +115,7 @@ pdf
 > 
 > 
 > 
-> h <- hist(gfp2mCherryRatio_2022_08_18_TKO_ATP5G1_gate2, breaks = breaks)
+> h <- hist(gfp2mCherryRatio_2022_08_18_TKO_ATP5G1_gate2, breaks = c(breaks, max(gfp2mCherryRatio_2022_08_18_TKO_ATP5G1_gate2, break_max)) )
 > dev.copy(png,'histogram/2022_08_18_TKO_ATP5G1_gate2_histogram.png')
 quartz_off_screen 
                 3 
@@ -123,7 +131,7 @@ pdf
 > 
 > 
 > 
-> h <- hist(gfp2mCherryRatio_2022_08_18_4F_ATP5G1_gate2, breaks = breaks)
+> h <- hist(gfp2mCherryRatio_2022_08_18_4F_ATP5G1_gate2, breaks = c(breaks, max(gfp2mCherryRatio_2022_08_18_4F_ATP5G1_gate2, break_max)) )
 > dev.copy(png,'histogram/2022_08_18_4F_ATP5G1_gate2_histogram.png')
 quartz_off_screen 
                 3 
@@ -139,7 +147,7 @@ pdf
 > 
 > 
 > 
-> h <- hist(gfp2mCherryRatio_2022_08_18_2F_ATP5G1_gate2, breaks = breaks)
+> h <- hist(gfp2mCherryRatio_2022_08_18_2F_ATP5G1_gate2, breaks = c(breaks, max(gfp2mCherryRatio_2022_08_18_2F_ATP5G1_gate2, break_max)) )
 > dev.copy(png,'histogram/2022_08_18_2F_ATP5G1_gate2_histogram.png')
 quartz_off_screen 
                 3 
@@ -155,7 +163,7 @@ pdf
 > 
 > 
 > 
-> h <- hist(gfp2mCherryRatio_2022_08_18_1F_ATP5G1_gate2, breaks = breaks)
+> h <- hist(gfp2mCherryRatio_2022_08_18_1F_ATP5G1_gate2, breaks = c(breaks, max(gfp2mCherryRatio_2022_08_18_1F_ATP5G1_gate2, break_max)) )
 > dev.copy(png,'histogram/2022_08_18_1F_ATP5G1_gate2_histogram.png')
 quartz_off_screen 
                 3 
@@ -173,4 +181,4 @@ pdf
 > 
 > proc.time()
    user  system elapsed 
-  0.608   0.042   0.680 
+  0.652   0.038   0.687 

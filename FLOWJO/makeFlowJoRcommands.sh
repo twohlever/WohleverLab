@@ -33,6 +33,10 @@ do
 done
 
 echo ")
+
+## Clean out large values when generating the histogram breakpoints
+gfp2mCherryRatio_ALL <- gfp2mCherryRatio_ALL[gfp2mCherryRatio_ALL < 1.2]
+
 gfp2mCherryHist_ALL <- hist(gfp2mCherryRatio_ALL, breaks=200)
 breaks <- gfp2mCherryHist_ALL\$breaks
 write.table(
@@ -42,6 +46,8 @@ write.table(
   sep = ","
 )
 
+break_max <- max(breaks) + 0.000000000000001
+
 " >> ${OUTPUT_FILE}
 
 
@@ -50,7 +56,7 @@ write.table(
 for name in ${NAMES_LIST}
 do
   echo "
-h <- hist(gfp2mCherryRatio_${name}, breaks = breaks)
+h <- hist(gfp2mCherryRatio_${name}, breaks = c(breaks, max(gfp2mCherryRatio_${name}, break_max)) )
 dev.copy(png,'histogram/${name}_histogram.png')
 dev.off()
 write.table(
