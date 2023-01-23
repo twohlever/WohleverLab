@@ -1,14 +1,25 @@
 #!/bin/sh
 
 # Assumes script is run in directory with input csv files
-
 R='/opt/homebrew/bin/R'
 
 OUTPUT_FILE="R_Commands.R"
 WORKDIR=`pwd`
 NAMES_LIST=""
 
-mkdir histogram
+# Cleanup from previous runs
+rm -rf  R_Commands.R R_Commands.Rout histogram/
+mkdir -p histogram
+
+echo "Check Filename Integrity"
+BadFileNameCount=$(ls -1 | grep -e "-" -e " " | wc | awk '{print $1}')
+if [ "${BadFileNameCount}" -gt 0 ]; then
+    echo "Filename integrity Failed on:"
+    echo "";
+    ls -1 | grep -e "-" -e " " 
+    exit 1;
+fi
+
 
 
 echo "setwd(\"${WORKDIR}/\")" > ${OUTPUT_FILE}
@@ -112,6 +123,7 @@ rev_break_max <- max(rev_breaks) + 0.000000000000001
 
 for name in ${NAMES_LIST}
 do
+  echo "${name}"
   echo "
 h <- hist(gfp2mRevCherryRatio_${name}, breaks = c(rev_breaks, max(gfp2mRevCherryRatio_${name}, rev_break_max)) )
 dev.copy(png,'histogram/rev_${name}_histogram.png')
@@ -131,3 +143,5 @@ done
 echo "Running R command: ${R} CMD BATCH ${OUTPUT_FILE}"
 ${R} CMD BATCH ${OUTPUT_FILE}
 date
+
+ tar -czf ~/Desktop/flowjo.tar.gz histogram/  R_Commands.R R_Commands.Rout
