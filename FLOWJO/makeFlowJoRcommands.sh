@@ -144,4 +144,4 @@ echo "Running R command: ${R} CMD BATCH ${OUTPUT_FILE}"
 ${R} CMD BATCH ${OUTPUT_FILE}
 date
 
- tar -czf ~/Desktop/flowjo.tar.gz histogram/  R_Commands.R R_Commands.Rout
+ tar -czf ~/Desktop/flowjo.tar.gz histogram/  R_Commands.R R_Commands.Rout Rplots.pdf
