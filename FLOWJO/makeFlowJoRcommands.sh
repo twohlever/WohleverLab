@@ -144,4 +144,10 @@ echo "Running R command: ${R} CMD BATCH ${OUTPUT_FILE}"
 ${R} CMD BATCH ${OUTPUT_FILE}
 date
 
- tar -czf ~/Desktop/flowjo.tar.gz histogram/  R_Commands.R R_Commands.Rout Rplots.pdf
+echo "
+RUN ME MANUALLY:
+
+sudo /usr/bin/xattr -dr com.apple.provenance .
+tar -czf ~/Desktop/flowjo.tar.gz histogram/  R_Commands.R R_Commands.Rout Rplots.pdf
+
+"
