@@ -405,9 +405,9 @@ gfp2mRevCherryRatio_ALL <- c(1
 )
 
 ## Clean out large values when generating the histogram breakpoints
-gfp2mRevCherryRatio_ALL <- gfp2mRevCherryRatio_ALL[gfp2mRevCherryRatio_ALL < 1.2]
+gfp2mRevCherryRatio_ALL <- gfp2mRevCherryRatio_ALL[gfp2mRevCherryRatio_ALL < 5]
 
-gfp2mRevCherryHist_ALL <- hist(gfp2mRevCherryRatio_ALL, breaks=200)
+gfp2mRevCherryHist_ALL <- hist(gfp2mRevCherryRatio_ALL, breaks=500)
 rev_breaks <- gfp2mRevCherryHist_ALL$breaks
 write.table(
   rev_breaks,
